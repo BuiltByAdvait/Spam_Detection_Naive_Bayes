@@ -1,191 +1,327 @@
-============================================================
-README.md
-============================================================
-
 # SENTINEL // SMS THREAT ANALYZER
 
-> SMS Spam Detection using Multinomial Naive Bayes and R Shiny
+<p align="center">
 
-SENTINEL is an interactive SMS threat analysis system that classifies text messages as HAM (legitimate) or SPAM (potentially malicious/unwanted) using a Multinomial Naive Bayes machine learning model.
+  <img src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R">
+  <img src="https://img.shields.io/badge/Machine%20Learning-Naive%20Bayes-8A2BE2?style=for-the-badge" alt="Machine Learning">
+  <img src="https://img.shields.io/badge/NLP-Text%20Classification-00A67E?style=for-the-badge" alt="NLP">
+  <img src="https://img.shields.io/badge/R%20Shiny-Interactive%20Dashboard-75AADB?style=for-the-badge" alt="R Shiny">
+  <img src="https://img.shields.io/badge/Accuracy-98.12%25-2EA44F?style=for-the-badge" alt="Accuracy">
+  <img src="https://img.shields.io/badge/F1--Score-93.07%25-FFB000?style=for-the-badge" alt="F1 Score">
 
-The project combines Natural Language Processing, statistical modelling, probability, and an interactive R Shiny dashboard to provide message classification along with probability scores, confidence levels, threat indicators, and analysis history.
+</p>
 
----
+<p align="center">
+  <strong>Intelligent SMS Spam Detection powered by Multinomial Naive Bayes</strong>
+</p>
 
-## 🚀 Features
-
-- SMS Spam/Ham classification
-- Multinomial Naive Bayes classifier
-- Text preprocessing and Document-Term Matrix generation
-- Vocabulary alignment
-- Laplace smoothing
-- HAM and SPAM probability estimation
-- Confidence score
-- Threat-level classification
-- Suspicious keyword indicators
-- Analysis trace
-- Recent analysis history
-- Interactive R Shiny interface
-- Cyberpunk-inspired terminal interface
-- Model performance visualization
-- Confusion matrix visualization
-- Test-message buttons for quick demonstration
+<p align="center">
+  A statistical machine learning project built with R, Natural Language Processing, and R Shiny.
+</p>
 
 ---
 
-## 🧠 How It Works
+## 🛡️ Overview
 
-The system follows a complete text-classification pipeline:
+**SENTINEL** is an interactive SMS threat analysis system that classifies text messages as **HAM** or **SPAM** using a **Multinomial Naive Bayes** machine learning model.
 
-SMS Message
-     ↓
-Text Preprocessing
-     ↓
-Document-Term Matrix
-     ↓
-Vocabulary Alignment
-     ↓
-Multinomial Naive Bayes
-     ↓
-HAM / SPAM Scores
-     ↓
-Probability Calculation
-     ↓
-Classification + Confidence
-     ↓
-Threat Indicators
-     ↓
-R Shiny Dashboard
+The system combines statistical modelling, probability, Natural Language Processing, text classification, and an interactive R Shiny dashboard to provide not only a classification result, but also probability scores, confidence levels, threat indicators, and an analysis trace.
 
-The model calculates the probability of the message belonging to each class:
-
-- HAM
-- SPAM
-
-The class with the higher probability becomes the final prediction.
-
-The implementation uses Laplace smoothing to handle words that may not appear in a particular class during training.
+The project was developed as a practical implementation of concepts covered in **Statistical Modelling for Machine Learning (SML)**.
 
 ---
 
-## 📊 Dataset
+## ✨ Key Features
 
-The project uses a labelled SMS dataset containing:
+- 🧠 Multinomial Naive Bayes classification
+- 🔤 Natural Language Processing pipeline
+- 📊 Document-Term Matrix representation
+- 🧮 Laplace smoothing
+- 🎯 HAM and SPAM probability calculation
+- 📈 Confidence score
+- 🚨 Threat-level classification
+- 🔍 Suspicious keyword indicators
+- 🧾 Classification analysis trace
+- 📜 Recent analysis history
+- 🖥️ Interactive R Shiny dashboard
+- 🌐 Cybersecurity-inspired terminal interface
+- 📊 Confusion matrix visualization
+- 📉 Model performance visualization
+- 📨 Built-in test messages for demonstration
 
-| Dataset | Messages |
-|---|---:|
-| Total | 5,574 |
-| Training | 4,459 |
-| Testing | 1,115 |
+---
 
-The dataset contains two classes:
+# 🧠 System Architecture
 
-- `ham` — legitimate messages
-- `spam` — spam messages
+```text
+                         ┌───────────────────────┐
+                         │      SMS MESSAGE      │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │  TEXT PREPROCESSING   │
+                         │                       │
+                         │  • Cleaning           │
+                         │  • Normalization      │
+                         │  • Tokenization       │
+                         │  • Feature Extraction │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │ DOCUMENT-TERM MATRIX  │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │ VOCABULARY ALIGNMENT  │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                 ┌────────────────────────────────────┐
+                 │      MULTINOMIAL NAIVE BAYES       │
+                 │                                    │
+                 │  • Class Priors                    │
+                 │  • Word Probabilities              │
+                 │  • Laplace Smoothing               │
+                 │  • Log Probability Scores          │
+                 └──────────────────┬─────────────────┘
+                                    │
+                                    ▼
+                         ┌───────────────────────┐
+                         │ PROBABILITY ANALYSIS  │
+                         │                       │
+                         │  • HAM Probability    │
+                         │  • SPAM Probability   │
+                         │  • Confidence         │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │   THREAT ANALYSIS     │
+                         │                       │
+                         │  • Suspicious Terms   │
+                         │  • Threat Level       │
+                         │  • Analysis Trace     │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+                         ┌───────────────────────┐
+                         │       R SHINY         │
+                         │    DASHBOARD / UI     │
+                         └───────────────────────┘
+📊 Dataset
+
+The project uses a labelled SMS dataset containing 5,574 messages.
+
+Dataset Split	Messages
+Total	5,574
+Training	4,459
+Testing	1,115
+Classes
+Class	Meaning
+ham	Legitimate SMS message
+spam	Spam SMS message
 
 The dataset is included in:
 
 data/SMSSpamCollection
 
-> Dataset attribution/source information should follow the original dataset provider's terms and license.
+Dataset attribution and usage should follow the original dataset provider's terms and license.
 
----
+⚙️ Machine Learning Pipeline
 
-## 📈 Model Performance
+SENTINEL uses a manually implemented Multinomial Naive Bayes approach for text classification.
 
-The final Multinomial Naive Bayes model was evaluated on the test dataset.
+01 — Text Preprocessing
 
-| Metric | Score |
-|---|---:|
-| Accuracy | 98.12% |
-| Precision | 88.68% |
-| Recall | 97.92% |
-| F1-Score | 93.07% |
+Raw SMS messages are transformed into a normalized representation suitable for statistical modelling.
 
-### Confusion Matrix
+Raw Message
+     ↓
+Cleaning
+     ↓
+Normalization
+     ↓
+Tokenization
+     ↓
+Processed Text
+02 — Document-Term Matrix
 
-                 Predicted
-              HAM       SPAM
-Actual HAM     953       18
-Actual SPAM      3      141
+The processed messages are converted into a Document-Term Matrix (DTM) where:
 
-The corresponding visualization is available in:
+Rows represent SMS messages
+Columns represent vocabulary terms
+Values represent term occurrences
+03 — Vocabulary Alignment
 
-plots/confusion_matrix.png
+The training and testing matrices are aligned using their common vocabulary so that both datasets use the same feature space.
 
-Additional model visualizations:
+04 — Multinomial Naive Bayes
 
-plots/model_performance.png
-plots/spam_vs_ham_distribution.png
+The classifier calculates:
 
----
+Class priors
+Word probabilities
+HAM score
+SPAM score
+05 — Laplace Smoothing
 
-## 🖥️ SENTINEL Dashboard
+Laplace smoothing is applied to prevent zero probabilities for unseen words.
 
-The R Shiny application provides an interactive interface for analysing SMS messages.
+06 — Final Classification
 
-### Dashboard capabilities
+The message is classified according to the higher calculated class probability.
 
-Model Status:
-- Dataset size
-- Training samples
-- Testing samples
-- Accuracy
-- F1-score
-- Analysis counter
+                    Message
+                       │
+              ┌────────┴────────┐
+              ▼                 ▼
+        HAM Probability    SPAM Probability
+              │                 │
+              └────────┬────────┘
+                       ▼
+               Higher Probability
+                       │
+                       ▼
+                Final Prediction
+📈 Model Performance
 
-Message Analysis:
-- Enter any SMS message
-- Analyze message
-- Test sample spam message
-- Test sample ham message
-- Clear input
+The final model was evaluated using the held-out testing dataset.
 
-Analysis Results:
-- Final classification
-- HAM probability
-- SPAM probability
-- Confidence score
-- Threat level
-- Analysis trace
-- Suspicious indicators
-- Explanation panel
-- Recent analysis history
+Metric	Result
+🎯 Accuracy	98.12%
+🔎 Precision	88.68%
+📥 Recall	97.92%
+⚡ F1-Score	93.07%
+Confusion Matrix
+                         Predicted
+                    ┌─────────┬─────────┐
+                    │   HAM   │  SPAM   │
+┌────────────┬──────┼─────────┼─────────┤
+│ Actual HAM │      │   953   │    18   │
+├────────────┼──────┼─────────┼─────────┤
+│ Actual SPAM│      │     3   │   141   │
+└────────────┴──────┴─────────┴─────────┘
+📊 Visualizations
 
----
+The repository contains:
 
-## 🛠️ Tech Stack
+plots/
+├── confusion_matrix.png
+├── model_performance.png
+└── spam_vs_ham_distribution.png
+🖥️ SENTINEL Dashboard
 
-### Programming Language
+The project includes an interactive R Shiny dashboard with a dark, cybersecurity-inspired terminal interface.
 
-- R
+📡 Model Status
 
-### Machine Learning
+The dashboard displays:
 
-- Multinomial Naive Bayes
-- Probability-based classification
-- Laplace smoothing
+Dataset size
+Training samples
+Testing samples
+Model accuracy
+F1-score
+Total analysis count
+📨 Message Analyzer
 
-### Natural Language Processing
+Users can:
 
-- Text preprocessing
-- Document-Term Matrix
-- Vocabulary alignment
-- Token-based classification
+Enter an SMS message
+Analyze the message
+Test a sample spam message
+Test a sample ham message
+Clear the input
+🎯 Classification Result
 
-### Visualization
+After analysis, the dashboard displays:
 
-- ggplot2
-- Base R visualizations
+Prediction
+     ↓
+HAM / SPAM
 
-### Application
+Probability
+     ↓
+HAM %
+SPAM %
 
-- R Shiny
+Confidence
+     ↓
+Classification Confidence
 
----
+Threat Level
+     ↓
+HIGH / MODERATE / LOW
+🔍 Explainability
 
-## 📁 Project Structure
+SENTINEL provides additional information to make the classification easier to understand:
 
+Analysis trace
+Suspicious terms
+Threat indicators
+Threat level
+"Why was this flagged?" section
+Recent analysis history
+🚨 Threat Indicator Layer
+
+SENTINEL contains a separate rule-based indicator layer that highlights suspicious terms commonly associated with potentially unwanted messages.
+
+Examples include:
+
+OTP
+password
+PIN
+prize
+winner
+claim
+urgent
+click
+verify
+verification
+account
+bank
+reward
+offer
+free
+cash
+lottery
+transfer
+fee
+congratulations
+selected
+
+These indicators are used for explainability and threat highlighting.
+
+They are separate from the underlying Multinomial Naive Bayes model and are not used to calculate the official test-set performance metrics.
+
+🧪 Example Analysis
+📩 Example 01 — Spam
+Congratulations! You have won a free prize. Call now!
+Prediction: SPAM
+💬 Example 02 — Ham
+Hey bro, are you coming to college tomorrow?
+Prediction: HAM
+🛠️ Technology Stack
+Programming Language
+R
+Machine Learning
+Multinomial Naive Bayes
+Probability Modelling
+Laplace Smoothing
+Natural Language Processing
+Text Preprocessing
+Document-Term Matrix
+Vocabulary Alignment
+Token-Based Features
+Visualization
+ggplot2
+Base R
+Application
+R Shiny
+📁 Project Structure
 Spam_Detection_Naive_Bayes/
 │
 ├── data/
@@ -206,184 +342,133 @@ Spam_Detection_Naive_Bayes/
 │   └── 06_shiny_app.R
 │
 ├── .gitignore
+├── LICENSE
 └── README.md
-
----
-
-## ⚙️ How to Run
-
-### 1. Clone the repository
-
+🚀 Installation & Setup
+1. Clone the Repository
 git clone https://github.com/BuiltByAdvait/Spam_Detection_Naive_Bayes.git
-
-### 2. Open the project
+cd Spam_Detection_Naive_Bayes
+2. Open in RStudio
 
 Open the project directory in RStudio.
 
-### 3. Install the required packages
+3. Install Dependencies
 
-Install the packages required by the scripts if they are not already installed.
-
-Example:
+Install the required packages if they are not already installed:
 
 install.packages("tm")
 install.packages("shiny")
 install.packages("ggplot2")
 
-Additional packages used by individual scripts may need to be installed depending on your R environment.
+Additional packages required by individual scripts may need to be installed depending on your R environment.
 
-### 4. Run the analysis pipeline
+4. Run the Analysis Pipeline
 
-Run the scripts in the following order:
+Execute the scripts in sequence:
 
 01_data_loading.R
+        ↓
 02_text_preprocessing.R
+        ↓
 03_document_term_matrix.R
+        ↓
 04_naive_bayes_model.R
+        ↓
 05_new_message_prediction.R
-
-### 5. Launch SENTINEL
-
-Run:
-
+        ↓
 06_shiny_app.R
+🌐 Launch the Application
 
-The Shiny application will launch in RStudio's Shiny viewer or your default browser.
+Open:
 
----
+scripts/06_shiny_app.R
 
-## 🔍 Example Predictions
+Run the Shiny application from RStudio.
 
-### Spam
+The application will open in the RStudio Viewer or your default web browser.
 
-Congratulations! You have won a free prize. Call now!
+📌 Limitations
+Classification depends on the vocabulary learned from the training dataset.
+Unusual or unseen message patterns may reduce prediction reliability.
+Legitimate messages containing spam-associated words may receive a high spam probability.
+The suspicious-keyword indicator layer is rule-based and separate from the machine learning model.
+Test-set performance does not guarantee identical performance on real-world SMS traffic.
+The current system primarily analyses message text and does not independently verify URLs, sender identity, or external message metadata.
+🔮 Future Scope
 
-Expected classification:
+Potential improvements include:
 
-SPAM
+Larger and more diverse SMS datasets
+TF-IDF feature representation
+N-gram features
+Additional machine learning algorithms
+Model comparison
+Cross-validation
+ROC curve analysis
+Precision-Recall analysis
+URL analysis
+Sender analysis
+Real-time SMS stream processing
+Multilingual spam detection
+Advanced NLP models
+Web deployment
+API-based integration
+👨‍💻 Project Team
+Name	Roll No.
+Aniket Adhikari	25901
+Anushaa Anjellah	25902
+Aneesh Rawle	25903
+Advait Bankar	25904
+Faculty Guides
 
-### Ham
+Prof. Neha Salunkhe
 
-Hey bro, are you coming to college tomorrow?
+Prof. Monali Chandwadkar
 
-Expected classification:
+Head of Department
 
-HAM
+Prof. Sonali Sherigar
 
----
-
-## ⚠️ Threat Indicators
-
-SENTINEL also contains a separate rule-based indicator layer that checks the input message for suspicious terms commonly associated with potentially unwanted messages.
-
-Examples include:
-
-OTP
-password
-PIN
-prize
-winner
-claim
-urgent
-click
-verify
-bank
-reward
-offer
-free
-cash
-lottery
-transfer
-congratulations
-
-These indicators are used for explainability and threat highlighting and are separate from the underlying Naive Bayes classification model.
-
----
-
-## 📌 Limitations
-
-- Classification depends on the vocabulary learned from the training dataset.
-- Unusual or unseen message patterns may reduce prediction reliability.
-- Some legitimate messages containing words commonly associated with spam may receive a high spam probability.
-- The suspicious-keyword indicator layer is rule-based and should not be interpreted as part of the machine learning model itself.
-- Model performance on the provided test dataset does not guarantee identical performance on real-world SMS traffic.
-
----
-
-## 🔮 Future Scope
-
-Possible improvements include:
-
-- Larger and more diverse SMS datasets
-- TF-IDF based feature representation
-- N-gram features
-- Additional machine learning algorithms
-- Model comparison
-- Cross-validation
-- ROC and Precision-Recall analysis
-- Real-time SMS stream analysis
-- URL and sender analysis
-- More advanced NLP techniques
-- Multilingual spam detection
-- Deployment as a web application
-
----
-
-## 👨‍💻 Team
-
-| Name | Roll No. |
-|---|---:|
-| Aniket Adhikari | 25901 |
-| Anushaa Anjellah | 25902 |
-| Aneesh Rawle | 25903 |
-| Advait Bankar | 25904 |
-
-### Project Guides
-
-- Prof. Neha Salunkhe
-- Prof. Monali Chandwadkar
-
-### Head of Department
-
-- Prof. Sonali Sherigar
-
-### Course
+Course
 
 Statistical Modelling for Machine Learning (SML)
 
----
-
-## 📚 Academic Context
+🎓 Academic Context
 
 This project was developed as a microproject for the Statistical Modelling for Machine Learning (SML) course.
 
-The project demonstrates the practical application of:
+The project demonstrates practical applications of:
 
-- Probability
-- Bayes' theorem
-- Naive Bayes classification
-- Natural Language Processing
-- Statistical modelling
-- Data preprocessing
-- Model evaluation
-- Data visualization
-- R programming
-- Interactive application development
-
----
-
-## 📜 License
+Probability
+Bayes' Theorem
+Naive Bayes Classification
+Natural Language Processing
+Statistical Modelling
+Data Preprocessing
+Model Evaluation
+Data Visualization
+R Programming
+Interactive Application Development
+📜 License
 
 This project is licensed under the MIT License.
 
-See the LICENSE file for details.
+See the LICENSE file for complete license information.
 
----
+Note: The MIT License applies to the project code and documentation. Third-party datasets may be subject to their own licensing and usage terms.
 
-## ⭐ Acknowledgements
+⭐ Acknowledgements
 
-Thanks to the faculty guides and the SML course team for their guidance and support throughout the project.
+We would like to thank our faculty guides and the SML course team for their guidance and support throughout the development of this project.
 
----
+<p align="center">
 
-Built with R • NLP • Naive Bayes • R Shiny
+<strong>SENTINEL // SMS THREAT ANALYZER</strong>
+
+<br><br>
+
+Built with R • NLP • Multinomial Naive Bayes • R Shiny
+
+<br><br>
+
+<a href="https://github.com/BuiltByAdvait/Spam_Detection_Naive_Bayes"> View Repository </a> </p> ```
